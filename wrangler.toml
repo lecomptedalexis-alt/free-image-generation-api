@@ -1,4 +1,4 @@
-name = "image-generation-api"
+name = "free-image-generation-api"
 main = "worker.js"
 compatibility_date = "2025-05-15"
 

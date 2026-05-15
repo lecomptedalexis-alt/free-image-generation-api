@@ -1,3 +1,11 @@
+// 📦 Function to return JSON responses
+function json(data, status = 200) {
+    return new Response(JSON.stringify(data), {
+        status,
+        headers: { "Content-Type": "application/json" },
+    });
+}
+
 export default {
     async fetch(request, env) {
         const API_KEY = env.API_KEY;
@@ -19,14 +27,6 @@ export default {
 
             if (!prompt) return json({ error: "Prompt is required" }, 400);
 
-            // Choose model from the following list:
-            // "@cf/blackforestlabs/ux-1-schnell"
-            // "@cf/bytedance/stable-diffusion-xl-lightning"
-            // "@cf/lykon/dreamshaper-8-lcm"
-            // "@cf/runwayml/stable-diffusion-v1-5-img2img"
-            // "@cf/runwayml/stable-diffusion-v1-5-inpainting"
-            // "@cf/stabilityai/stable-diffusion-xl-base-1.0"
-
             // 🧠 Generate image from prompt
             const result = await env.AI.run(
                 "@cf/stabilityai/stable-diffusion-xl-base-1.0",
@@ -41,11 +41,3 @@ export default {
         }
     },
 };
-
-// 📦 Function to return JSON responses
-function json(data, status = 200) {
-    return new Response(JSON.stringify(data), {
-        status,
-        headers: { "Content-Type": "application/json" },
-    });
-}

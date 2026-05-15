@@ -1,0 +1,6 @@
+name = "image-generation-api"
+main = "worker.js"
+compatibility_date = "2025-05-15"
+
+[[ai]]
+binding = "AI"
